@@ -30,37 +30,13 @@ public class Arrow extends Shape{
     private final ArrayList<Node> elements;
     
     public Arrow(double iniX,double iniY,double finX,double finY){
-       CubicCurve curve1 = new CubicCurve( iniX, iniY, iniX-50, iniY+15, finX+50, finY-15, finX, finY);
+       CubicCurve curve1 = new CubicCurve( iniX, iniY, iniX-25, iniY+35, finX+35, finY-25, finX, finY);
        curve1.setStroke(Color.BLACK);
        curve1.setStrokeWidth(1);    
        curve1.setFill(null);
-
-       double size=Math.max(curve1.getBoundsInLocal().getWidth(),
-                            curve1.getBoundsInLocal().getHeight());
-       double scale=size/4d;
-
-       Point2D ori=eval(curve1,0);
-       Point2D tan=evalDt(curve1,0).normalize().multiply(scale);
-       Path arrowIni=new Path();
-       arrowIni.getElements().add(new MoveTo(ori.getX()+0.2*tan.getX()-0.2*tan.getY(),
-                                           ori.getY()+0.2*tan.getY()+0.2*tan.getX()));
-       arrowIni.getElements().add(new LineTo(ori.getX(), ori.getY()));
-       arrowIni.getElements().add(new LineTo(ori.getX()+0.2*tan.getX()+0.2*tan.getY(),
-                                           ori.getY()+0.2*tan.getY()-0.2*tan.getX()));
-
-       ori=eval(curve1,1);
-       tan=evalDt(curve1,1).normalize().multiply(scale);
-       Path arrowEnd=new Path();
-       arrowEnd.getElements().add(new MoveTo(ori.getX()-0.2*tan.getX()-0.2*tan.getY(),
-                                           ori.getY()-0.2*tan.getY()+0.2*tan.getX()));
-       arrowEnd.getElements().add(new LineTo(ori.getX(), ori.getY()));
-       arrowEnd.getElements().add(new LineTo(ori.getX()-0.2*tan.getX()+0.2*tan.getY(),
-                                           ori.getY()-0.2*tan.getY()-0.2*tan.getX()));
       
        elements = new ArrayList<>();
        elements.add(curve1);
-       elements.add(arrowIni);
-       elements.add(arrowEnd);
     }
     
     private Point2D eval(CubicCurve c, float t){
