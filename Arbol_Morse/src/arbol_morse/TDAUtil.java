@@ -6,12 +6,8 @@
 package arbol_morse;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
-import java.util.Scanner;
-import javafx.scene.Group;
 
 
 /**
@@ -27,7 +23,6 @@ public class TDAUtil {
             String line = br.readLine();
             while(line!=null){
                 String[] arr = line.split("\\|");
-                System.out.println(line);
                 String value = hm.get(arr[0]);
                 if(value == null){
                     hm.put(arr[0],arr[1]);

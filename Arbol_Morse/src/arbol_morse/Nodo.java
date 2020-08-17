@@ -56,5 +56,23 @@ public class Nodo {
     public void setY(double y) {
         this.y = y;
     }
+
+    public Circle getCircle() {
+        return circle;
+    }
+
+    public void setCircle(Circle circle) {
+        this.circle = circle;
+    }
+
+    public Label getLetter() {
+        return letter;
+    }
+
+    public void setLetter(Label letter) {
+        this.letter = letter;
+    }
+    
+    
 }
 

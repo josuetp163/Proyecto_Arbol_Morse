@@ -2,10 +2,13 @@ package arbol_morse;
 
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
-import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.scene.paint.Color;
 
 public class MorseTree{
-    private Node root;
+    private final Node root;
 
     private class Node{
         private Nodo nodo;
@@ -124,6 +127,52 @@ public class MorseTree{
             postOrden(n.left);
             postOrden(n.right);
             System.out.println(n.letter);
+        }
+    }
+    
+    public void Recorrer(String code){
+        HiloRecorrer hilo = new HiloRecorrer(code);
+        Thread hiloReco= new Thread(hilo);
+        hiloReco.start();
+    }
+    
+    public class HiloRecorrer implements Runnable{
+        private String code;
+        private Node n;
+        
+        public HiloRecorrer(String code){
+            this.code = code;
+        }
+        
+        @Override
+        public void run() {
+            CharacterIterator it = new StringCharacterIterator(code);
+            char a;
+            n = root;
+            while(it.current()!= CharacterIterator.DONE){
+                try {
+                    Thread.sleep(500);
+                }catch(InterruptedException ex) {
+                    Logger.getLogger(MorseTree.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                a= it.current();
+                if(a == '-'){
+                    n = n.left;
+                }else if(a == '.'){
+                    n = n.right;
+                }
+                System.out.println(n.letter);
+                Platform.runLater(()->{n.nodo.getCircle().setFill(Color.GREY);});
+                it.next();
+                try {
+                    Thread.sleep(2000);
+                }catch(InterruptedException ex) {
+                    Logger.getLogger(MorseTree.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Platform.runLater(()->{n.nodo.getCircle().setFill(Color.BLUE);});
+
+            }
+            System.out.println("ACABE");
         }
     }
 }
