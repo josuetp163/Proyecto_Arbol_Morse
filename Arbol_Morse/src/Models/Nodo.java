@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package arbol_morse;
+package models;
 
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
@@ -32,6 +32,7 @@ public class Nodo {
         letter.setTextFill(Color.WHITE);
         letter.setLayoutX(this.x-3);
         letter.setLayoutY(this.y-9);
+        letter.setId("nodo");
         circle = new Circle(this.x,this.y,20);
         elements.add(circle);
         elements.add(letter);

@@ -1,10 +1,16 @@
-package arbol_morse;
+package models;
 
+import util.TDAUtil;
+import util.Constantes;
+import mainApp.ArbolMorse;
+import java.io.File;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
 public class MorseTree{
@@ -24,10 +30,10 @@ public class MorseTree{
     }
     
     public MorseTree(){
-        Nodo n = new Nodo(600,100,"INI");
+        Nodo n = new Nodo(600,100,"MT");
         root = new Node("Inicio","");
         root.nodo = n;
-        Arbol_Morse.root.getChildren().addAll(n.getChildren());
+        ArbolMorse.root.getChildren().addAll(n.getChildren());
     }
 
     public boolean add(String letter,String code,double x,double y){
@@ -52,12 +58,12 @@ public class MorseTree{
         if(a == '-'){
                 n.left = nc;
                 TDAUtil.connectLeft(n.nodo,nc.nodo);
-                Arbol_Morse.root.getChildren().addAll(nc.nodo.getChildren());
+                ArbolMorse.root.getChildren().addAll(nc.nodo.getChildren());
                 return true;
             }else if(a == '.'){
                 n.right = nc;
                 TDAUtil.connectRight(n.nodo,nc.nodo);
-                Arbol_Morse.root.getChildren().addAll(nc.nodo.getChildren());
+                ArbolMorse.root.getChildren().addAll(nc.nodo.getChildren());
                 return true;
             }
         return false;
@@ -130,7 +136,7 @@ public class MorseTree{
         }
     }
     
-    public void Recorrer(String code){
+    public void recorrer(String code){
         HiloRecorrer hilo = new HiloRecorrer(code);
         Thread hiloReco= new Thread(hilo);
         hiloReco.start();
@@ -147,6 +153,9 @@ public class MorseTree{
         @Override
         public void run() {
             CharacterIterator it = new StringCharacterIterator(code);
+            String URIline = new File(Constantes.URILINE).toURI().toString();
+            String URIdot = new File(Constantes.URIDOT).toURI().toString();
+            MediaPlayer player;
             char a;
             n = root;
             while(it.current()!= CharacterIterator.DONE){
@@ -158,21 +167,23 @@ public class MorseTree{
                 a= it.current();
                 if(a == '-'){
                     n = n.left;
+                    player = new MediaPlayer( new Media(URIline));
+                    player.play();
                 }else if(a == '.'){
                     n = n.right;
+                    player = new MediaPlayer( new Media(URIdot));
+                    player.play();
                 }
-                System.out.println(n.letter);
-                Platform.runLater(()->{n.nodo.getCircle().setFill(Color.GREY);});
+                Platform.runLater(()->{n.nodo.getCircle().setFill(Color.valueOf("#2E9C9C"));});
                 it.next();
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(1000);
                 }catch(InterruptedException ex) {
                     Logger.getLogger(MorseTree.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                Platform.runLater(()->{n.nodo.getCircle().setFill(Color.BLUE);});
+                Platform.runLater(()->{n.nodo.getCircle().setFill(Color.BLACK);});
 
             }
-            System.out.println("ACABE");
         }
     }
 }

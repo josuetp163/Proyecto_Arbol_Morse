@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package arbol_morse;
+package util;
 
+import models.Nodo;
+import models.Arrow;
+import mainApp.ArbolMorse;
+import models.MorseTree;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.HashMap;
@@ -52,11 +56,11 @@ public class TDAUtil {
     
     public static void connectLeft(Nodo n1, Nodo n2){
         Arrow f = new Arrow(n1.getX()-20,n1.getY(),n2.getX(),n2.getY()-20);
-        Arbol_Morse.root.getChildren().addAll(f.getChildren());
+        ArbolMorse.root.getChildren().addAll(f.getChildren());
     }
     
     public static void connectRight(Nodo n1, Nodo n2){
         Arrow f = new Arrow(n1.getX()+20,n1.getY(),n2.getX(),n2.getY()-20);
-        Arbol_Morse.root.getChildren().addAll(f.getChildren());
+        ArbolMorse.root.getChildren().addAll(f.getChildren());
     }
 }
