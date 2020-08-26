@@ -5,10 +5,13 @@
  */
 package arbol_morse;
 
+import java.io.File;
 import java.util.HashMap;
 import javafx.application.Application;
 import javafx.scene.*;
 import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.*;
 
 /**
@@ -35,10 +38,16 @@ public class Arbol_Morse extends Application {
         bt.setLayoutX(30);
         bt.setLayoutY(30);
         root.getChildren().add(bt);
+        String uriString = new File("./src/arbol_morse/musica.mp3").toURI().toString();
+        MediaPlayer player = new MediaPlayer( new Media(uriString));
         
         bt.setOnMouseClicked(e->{
         tree.Recorrer("...-");
+        player.play();
         });
+        
+        
+        
     }
     
     @Override
