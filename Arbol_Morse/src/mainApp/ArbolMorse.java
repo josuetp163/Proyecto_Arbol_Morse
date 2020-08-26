@@ -40,9 +40,8 @@ public class ArbolMorse extends Application {
     @Override
     public void start(Stage primaryStage) {
         Scene scene = new Scene(root,1300,700);
-        primaryStage.setTitle("INICIO");
+        primaryStage.setTitle("ARBOL MORSE");
         primaryStage.setScene(scene);
-        setUserAgentStylesheet(Constantes.RUTASTYLE);
         primaryStage.show();
         
         
@@ -75,6 +74,6 @@ public class ArbolMorse extends Application {
         title.setLayoutX(900);
         title.setLayoutY(35);
         root.getChildren().addAll(bt,tf,lb,title);
-        
+        setUserAgentStylesheet(Constantes.RUTASTYLE);
     }
 }
