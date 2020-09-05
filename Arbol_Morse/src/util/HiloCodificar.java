@@ -12,7 +12,6 @@ import java.text.StringCharacterIterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
-import javafx.scene.paint.Color;
 
 /**
  *
@@ -44,9 +43,10 @@ public class HiloCodificar implements Runnable{
                 Platform.runLater(()->{ArbolMorse.lb.setText(traduccion.toString());});
                 it.next();
                 try {
-                    Thread.sleep(code.length()*1500);
+                    Thread.sleep(code.length()*1500L);
                 }catch(InterruptedException ex) {
                     Logger.getLogger(MorseTree.class.getName()).log(Level.SEVERE, null, ex);
+                    Thread.currentThread().interrupt(); 
                 }
             }   
         }

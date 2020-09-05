@@ -163,6 +163,7 @@ public class MorseTree{
                     Thread.sleep(500);
                 }catch(InterruptedException ex) {
                     Logger.getLogger(MorseTree.class.getName()).log(Level.SEVERE, null, ex);
+                    Thread.currentThread().interrupt();
                 }
                 a= it.current();
                 if(a == '-'){
@@ -180,6 +181,7 @@ public class MorseTree{
                     Thread.sleep(1000);
                 }catch(InterruptedException ex) {
                     Logger.getLogger(MorseTree.class.getName()).log(Level.SEVERE, null, ex);
+                    Thread.currentThread().interrupt();
                 }
                 Platform.runLater(()->{n.nodo.getCircle().setFill(Color.BLACK);});
 

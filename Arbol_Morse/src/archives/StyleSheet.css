@@ -2,7 +2,7 @@
     -fx-background-color: #f4f6ff;
 }
 
-Button {
+.button {
     -fx-min-width: 150;
     -fx-padding: 8 15 15 15;
     -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
@@ -19,7 +19,7 @@ Button {
     -fx-text-alignment: center;
 }
 
-Button:hover{
+.button:hover{
     -fx-background-color:
             linear-gradient(from 0% 93% to 0% 100%, #2E9C9C 0%, #168C8C 100%),
             #2E9C9C,
@@ -27,12 +27,12 @@ Button:hover{
             radial-gradient(center 50% 50%, radius 100%, #4EBABA, #2E9C9C);
 }
 
-Button:pressed{
+.button:pressed{
     -fx-padding: 10 15 13 15;
     -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
 }
 
-Label{
+.label{
     -fx-text-alignment: center;
     -fx-font-weight: bold;
     -fx-font-size: 40;
@@ -44,7 +44,6 @@ Label{
 }
 
 .text-field{
-    -fx-alignment: center;
     -fx-padding: 5 5 5 5;
     -fx-border-radius: 5;
     -fx-background-color: #ADE3E3 , #DEF7F7 , #DEF7F7;
@@ -61,5 +60,4 @@ Label{
     -fx-background-radius: 6.4, 4, 5, 3;
     -fx-background-insets: -1.4, 0, 1, 2;
     -fx-text-alignment: justify;
-    -fx-alignment: top-left;
 }

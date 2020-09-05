@@ -22,8 +22,7 @@ public class TDAUtil {
     
     public static HashMap<String,String> leerMapaArchivo(String nombreArchivo){
         HashMap<String,String> hm = new HashMap<>();
-        try{
-            BufferedReader br = new BufferedReader(new FileReader(nombreArchivo));
+        try(BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))){
             String line = br.readLine();
             while(line!=null){
                 String[] arr = line.split("\\|");
@@ -41,8 +40,7 @@ public class TDAUtil {
     }
     
     public static void amarArbolArchivo(MorseTree tree,String nombreArchivo){
-        try{
-            BufferedReader br = new BufferedReader(new FileReader(nombreArchivo));
+        try(BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))){
             String line = br.readLine();
             while(line!=null){
                 String[] arr = line.split("\\|");

@@ -9,15 +9,12 @@ import models.MorseTree;
 import util.Constantes;
 import util.HiloCodificar;
 import util.TDAUtil;
-import java.io.File;
 import java.util.HashMap;
 import javafx.application.Application;
 import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.*;
 
 /**
