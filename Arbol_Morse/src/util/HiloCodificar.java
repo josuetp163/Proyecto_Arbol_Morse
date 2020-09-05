@@ -5,7 +5,7 @@
  */
 package util;
 
-import mainApp.ArbolMorse;
+import main.ArbolMorse;
 import models.MorseTree;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;

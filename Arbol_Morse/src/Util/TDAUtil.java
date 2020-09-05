@@ -7,11 +7,13 @@ package util;
 
 import models.Nodo;
 import models.Arrow;
-import mainApp.ArbolMorse;
+import main.ArbolMorse;
 import models.MorseTree;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
 
 
 /**
@@ -19,8 +21,8 @@ import java.util.HashMap;
  * @author josue
  */
 public class TDAUtil {
-    
-    public static HashMap<String,String> leerMapaArchivo(String nombreArchivo){
+    private TDAUtil(){}
+    public static Map<String,String> leerMapaArchivo(String nombreArchivo){
         HashMap<String,String> hm = new HashMap<>();
         try(BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))){
             String line = br.readLine();
@@ -34,7 +36,7 @@ public class TDAUtil {
             }
             return hm;
         }catch(Exception e){
-        System.out.println(e.getMessage());
+            Logger.getLogger(e.getMessage());
         }
         return null;
     }
@@ -48,7 +50,7 @@ public class TDAUtil {
                 line = br.readLine();
             }
         }catch(Exception e){
-            System.out.println(e.getMessage());
+            Logger.getLogger(e.getMessage());
         }
     }
     

@@ -14,4 +14,6 @@ public abstract class Constantes {
     public static final String URILINE= "./src/media/line.mp3";
     public static final String URIDOT = "./src/media/dot.mp3";
     public static final String RUTASTYLE = "/archives/StyleSheet.css";
+    
+    private Constantes(){}
 }

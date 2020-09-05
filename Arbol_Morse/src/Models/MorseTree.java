@@ -2,7 +2,7 @@ package models;
 
 import util.TDAUtil;
 import util.Constantes;
-import mainApp.ArbolMorse;
+import main.ArbolMorse;
 import java.io.File;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
@@ -18,20 +18,13 @@ public class MorseTree{
 
     private class Node{
         private Nodo nodo;
-        private String letter;
-        private String code;
         private Node left;
         private Node right;
-
-        public Node(String letter,String code){
-            this.letter = letter;
-            this.code = code;
-        }
     }
     
     public MorseTree(){
         Nodo n = new Nodo(600,100,"MT");
-        root = new Node("Inicio","");
+        root = new Node();
         root.nodo = n;
         ArbolMorse.root.getChildren().addAll(n.getChildren());
     }
@@ -39,7 +32,7 @@ public class MorseTree{
     public boolean add(String letter,String code,double x,double y){
         Node nc = searchNode(code);
         if(nc != null) return false;
-        nc = new Node(letter,code);
+        nc = new Node();
         Nodo nodo = new Nodo(x,y,letter);
         nc.nodo = nodo;
         CharacterIterator it = new StringCharacterIterator(code);
@@ -102,39 +95,6 @@ public class MorseTree{
         if(n == null) return 0;
         return 1 + Math.max(height(n.left),height(n.right));
     }
-
-
-    public void preOrden(){
-        preOrden(root);
-    }
-    private void preOrden(Node n){
-        if(n!=null){
-            System.out.println(n.letter);
-            preOrden(n.left);
-            preOrden(n.right);
-        }
-    }
-    
-    public void inOrden(){
-        inOrden(root);
-    }
-    private void inOrden(Node n){
-        if(n!=null){
-            inOrden(n.left);
-            System.out.println(n.letter);
-            inOrden(n.right);
-        }
-    }
-    public void postOrden(){
-        postOrden(root);
-    }
-    private void postOrden(Node n){
-        if(n!=null){
-            postOrden(n.left);
-            postOrden(n.right);
-            System.out.println(n.letter);
-        }
-    }
     
     public void recorrer(String code){
         HiloRecorrer hilo = new HiloRecorrer(code);
@@ -153,8 +113,8 @@ public class MorseTree{
         @Override
         public void run() {
             CharacterIterator it = new StringCharacterIterator(code);
-            String URIline = new File(Constantes.URILINE).toURI().toString();
-            String URIdot = new File(Constantes.URIDOT).toURI().toString();
+            String uriLine = new File(Constantes.URILINE).toURI().toString();
+            String uriDot = new File(Constantes.URIDOT).toURI().toString();
             MediaPlayer player;
             char a;
             n = root;
@@ -168,12 +128,17 @@ public class MorseTree{
                 a= it.current();
                 if(a == '-'){
                     n = n.left;
-                    player = new MediaPlayer( new Media(URIline));
-                    player.play();
+                    try{
+                        player = new MediaPlayer( new Media(uriLine));
+                        player.play();
+                    }catch(NullPointerException ex){}
+                    
                 }else if(a == '.'){
                     n = n.right;
-                    player = new MediaPlayer( new Media(URIdot));
-                    player.play();
+                    try{
+                        player = new MediaPlayer( new Media(uriDot));
+                        player.play();
+                    }catch(NullPointerException ex){}
                 }
                 Platform.runLater(()->{n.nodo.getCircle().setFill(Color.valueOf("#2E9C9C"));});
                 it.next();
